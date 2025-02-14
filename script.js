@@ -1,27 +1,27 @@
 function playSong(isYes) {
     var yesPlayer = document.getElementById("yes-player");
     var noPlayer = document.getElementById("no-player");
-    
+
     if (isYes) {
         alert("Yay! You said Yes! ❤️");
         yesPlayer.style.display = "block";
         noPlayer.style.display = "none";
-        playIframeAudio(yesPlayer);
-        startLoveEmojis();
+        reloadIframe(yesPlayer);
     } else {
         alert("Oh no! Are you sure? 😢");
         noPlayer.style.display = "block";
         yesPlayer.style.display = "none";
-        playIframeAudio(noPlayer);
-        startSadEmojis();
+        reloadIframe(noPlayer);
     }
 }
 
-function playIframeAudio(player) {
+function reloadIframe(player) {
     var iframe = player.querySelector("iframe");
     var src = iframe.src;
     iframe.src = ""; // Reset src to force reload
-    setTimeout(() => { iframe.src = src; }, 100); // Reapply src after a short delay
+    setTimeout(() => {
+        iframe.src = src; // Reapply src after a short delay
+    }, 100);
 }
 
 function startLoveEmojis() {
