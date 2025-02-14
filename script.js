@@ -6,23 +6,31 @@ function playSong(isYes) {
         alert("Yay! You said Yes! ❤️");
         yesPlayer.style.display = "block";
         noPlayer.style.display = "none";
-        reloadIframe(yesPlayer);
+        playSoundCloud(yesPlayer);
     } else {
         alert("Oh no! Are you sure? 😢");
         noPlayer.style.display = "block";
         yesPlayer.style.display = "none";
-        reloadIframe(noPlayer);
+        playSoundCloud(noPlayer);
     }
 }
 
-function reloadIframe(player) {
+function playSoundCloud(player) {
     var iframe = player.querySelector("iframe");
-    var src = iframe.src;
-    iframe.src = ""; // Reset src to force reload
-    setTimeout(() => {
-        iframe.src = src; // Reapply src after a short delay
-    }, 100);
+    var widget = SC.Widget(iframe);
+    
+    widget.play();
 }
+
+// Load SoundCloud API dynamically
+function loadSoundCloudAPI() {
+    var script = document.createElement("script");
+    script.src = "https://w.soundcloud.com/player/api.js";
+    document.head.appendChild(script);
+}
+
+// Ensure the API loads before the user interacts
+window.onload = loadSoundCloudAPI;
 
 function startLoveEmojis() {
     setInterval(() => {
