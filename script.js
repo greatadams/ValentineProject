@@ -7,11 +7,13 @@ function playSong(isYes) {
         yesPlayer.style.display = "block";
         noPlayer.style.display = "none";
         playSoundCloud(yesPlayer);
+        startLoveEmojis(); // Start love emojis when Yes is clicked
     } else {
         alert("Oh no! Are you sure? 😢");
         noPlayer.style.display = "block";
         yesPlayer.style.display = "none";
         playSoundCloud(noPlayer);
+        startSadEmojis(); // Start sad emojis when No is clicked
     }
 }
 
@@ -39,6 +41,9 @@ function startLoveEmojis() {
         loveEmoji.innerText = "❤️";
         loveEmoji.style.left = Math.random() * 100 + "vw";
         loveEmoji.style.animationDuration = (Math.random() * 5 + 3) + "s";
+        loveEmoji.style.position = "absolute";
+        loveEmoji.style.top = "-10vh";
+        loveEmoji.style.fontSize = "2rem";
         document.body.appendChild(loveEmoji);
 
         setTimeout(() => loveEmoji.remove(), 8000);
@@ -52,6 +57,9 @@ function startSadEmojis() {
         emoji.innerText = "😢";
         emoji.style.left = Math.random() * 100 + "vw";
         emoji.style.animationDuration = (Math.random() * 5 + 3) + "s";
+        emoji.style.position = "absolute";
+        emoji.style.top = "-10vh";
+        emoji.style.fontSize = "2rem";
         document.body.appendChild(emoji);
 
         setTimeout(() => emoji.remove(), 8000);
